@@ -1,0 +1,55 @@
+<div class="container-fluid vh-100 background">
+  <div class="container d-flex justify-content-between py-3">
+    <div class="input-group w-50 me-3">
+      <label for="veiculo" class="form-label">Tipo de veículo</label>
+      <select class="form-select w-100 rounded" id="veiculo">
+        <option selected disabled>Selecione o tipo</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="input-group w-75 me-3">
+      <label for="marca" class="form-label">Marca</label>
+      <select class="form-select w-100 rounded" id="marca">
+        <option selected disabled>Selecione a marca</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="input-group me-3">
+      <label for="modelo" class="form-label">Modelo</label>
+      <select class="form-select w-100 rounded" id="modelo">
+        <option selected disabled>Selecione o modelo</option>
+        <option value="1">Argo Drive S-Design 1.3 8V Flex</option>
+        <option value="2">Argo Drive Gsr 1.3 8V Flex</option>
+        <option value="3">Argo 1.0 6V Flex.</option>
+      </select>
+    </div>
+
+    <div class="input-group w-50">
+      <label for="ano" class="form-label">Ano</label>
+      <select class="form-select w-100 rounded" id="ano">
+        <option selected disabled>Selecione o ano</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-between align-items-end">
+    <div class="container me-3 ps-0">
+      <label for="valor" class="form-label">Valor de venda</label>
+      <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <input type="text" class="form-control" id="valor">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary w-50">Consultar</button>
+  </div>
+  <app-resultado></app-resultado>
+</div>

@@ -1,0 +1,35 @@
+<div class="container pt-5">
+  <table class="table table-borderless d-flex justify-content-center align-items-center">
+    <tbody>
+      <tr *ngFor="let veiculo of veiculos">
+        <th>Marca:</th>
+        <td>{{ veiculo.marca }}</td>
+        <th>Valor do Veículo:</th>
+        <td>R$ 35.654,00</td>
+      </tr>
+      <tr *ngFor="let veiculo of veiculos">
+        <th>Modelo:</th>
+        <td class="pe-5">{{ veiculo.modelo }}</td>
+        <th>Valor pela FIPE:</th>
+        <td>{{ veiculo.valor }}</td>
+      </tr>
+      <tr *ngFor="let veiculo of veiculos">
+        <th>Ano do Modelo:</th>
+        <td>{{ veiculo.anoModelo }}</td>
+        <th colspan="4" class="text-danger text-center">Valor acima da tabela FIPE</th>
+      </tr>
+      <tr *ngFor="let veiculo of veiculos">
+        <th>Código FIPE:</th>
+        <td>{{ veiculo.codigoFipe }}</td>
+        <th colspan="4" rowspan="2" class="text-danger porcentagem align-middle text-center display-1 fw-bold p-0">12.0%</th>
+      </tr>
+      <tr *ngFor="let veiculo of veiculos">
+        <th>Mês de Referência:</th>
+        <td>{{ veiculo.mesReferencia | date:'MM/yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-danger text-center w-75 mx-auto" role="alert">
+    Valor acima do mercado
+  </div>
+</div>

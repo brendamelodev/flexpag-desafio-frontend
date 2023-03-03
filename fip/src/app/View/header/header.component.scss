@@ -1,0 +1,11 @@
+@import '../../../styles.scss';
+
+.cabecalho {
+  background-color: $primary-color;
+
+  div {
+    span {
+      color: $secondary-color;
+    }
+  }
+}

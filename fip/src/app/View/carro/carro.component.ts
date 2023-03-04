@@ -7,16 +7,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-simulador',
-  templateUrl: './simulador.component.html',
-  styleUrls: ['./simulador.component.scss']
+  selector: 'app-carro',
+  templateUrl: './carro.component.html',
+  styleUrls: ['./carro.component.scss']
 })
-export class SimuladorComponent implements OnInit {
-  tipos = [
-    { id: 'carros', nome: 'Carros' },
-    { id: 'motos', nome: 'Motos' },
-    { id: 'caminhoes', nome: 'Caminhões' }
-  ];
+export class CarroComponent implements OnInit {
+  tipos = "carros";
   marcas: Marca[] = [];
   modelos: Modelo[] = [];
   anos: Ano[] = [];
@@ -24,7 +20,7 @@ export class SimuladorComponent implements OnInit {
   mostrarResultado: boolean = false;
 
   formulario: FormGroup = this.fb.group({
-    tipo: ['', Validators.required],
+    tipo: ['carros'],
     marca: ['', Validators.required],
     modelo: ['', Validators.required],
     ano: ['', Validators.required],
@@ -33,34 +29,36 @@ export class SimuladorComponent implements OnInit {
 
   constructor(private service: FipService, private fb: FormBuilder) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getMarcas();
+   }
 
-  getMarcas(tipo: string) {
-    this.service.getMarcas(tipo).subscribe((marca) => {
+  getMarcas() {
+    this.service.getMarcas(this.tipos).subscribe((marca) => {
       this.marcas = marca;
     }, (error) => {
       console.log(error);
     })
   }
 
-  getModelos(tipo: string, marcaId: string) {
-    this.service.getModelos(tipo, marcaId).subscribe(({ modelos }) => {
+  getModelos(marcaId: string) {
+    this.service.getModelos(this.tipos, marcaId).subscribe(({ modelos }) => {
       this.modelos = modelos;
     }, (error) => {
       console.log(error);
     })
   }
 
-  getAnos(tipo: string, marcaId: string, modeloId: number) {
-    this.service.getAnos(tipo, marcaId, modeloId).subscribe((ano) => {
+  getAnos(marcaId: string, modeloId: number) {
+    this.service.getAnos(this.tipos, marcaId, modeloId).subscribe((ano) => {
       this.anos = ano;
     }, (error) => {
       console.log(error);
     })
   }
 
-  getValor(tipo: string, marcaId: any, modeloId: number, anoId: string) {
-    this.service.getValor(tipo, marcaId, modeloId, anoId).subscribe((valor) => {
+  getValor(marcaId: any, modeloId: number, anoId: string) {
+    this.service.getValor(this.tipos, marcaId, modeloId, anoId).subscribe((valor) => {
       this.valor = valor;
     }, (error) => {
       console.log(error);

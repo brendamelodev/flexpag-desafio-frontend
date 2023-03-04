@@ -1,5 +1,6 @@
+import { Valor } from './../../Model/valor';
+import { FipService } from './../../Contoller/fip.service';
 import { Component, OnInit } from '@angular/core';
-import { Veiculo } from 'src/app/Model/veiculo';
 
 @Component({
   selector: 'app-resultado',
@@ -7,21 +8,29 @@ import { Veiculo } from 'src/app/Model/veiculo';
   styleUrls: ['./resultado.component.scss']
 })
 export class ResultadoComponent implements OnInit {
-  veiculos: Veiculo[] = [{
-    valor: "R$ 125.318,00",
-    marca: "VW - VolksWagen",
-    modelo: "AMAROK High.CD 2.0 16V TDI 4x4 Dies. Aut",
-    anoModelo: 2014,
-    combustivel: "Diesel",
-    codigoFipe: "005340-6",
-    mesReferencia: "janeiro de 2023",
-    tipoVeiculo: 1,
-    siglaCombustivel: "D"
-  }];
-  
-  constructor() { }
+  formularioData: any | undefined;
+  responseData: any | undefined;
+  resultadoCalculo: number = 0;
+
+  constructor(private service: FipService) { }
 
   ngOnInit(): void {
+    this.formularioData = this.service.formularioData;
+    this.responseData = this.service.responseData;
+    this.calcularPercentual();
+    this.formatData();
   }
 
+  calcularPercentual() {
+    const valorDigitado = parseFloat(this.formularioData.replace(/\D/g, '')) / 100;
+    const valorFipe = parseFloat(this.responseData.Valor.replace(/\D/g, '')) / 100;
+    const calculo = ((valorDigitado - valorFipe) / valorFipe) * 100;
+    this.resultadoCalculo = calculo;
+    return this.resultadoCalculo;
+  }
+
+  formatData(){
+    const dado = Math.abs(this.resultadoCalculo).toFixed(1) + '%';
+    return dado;
+  }
 }

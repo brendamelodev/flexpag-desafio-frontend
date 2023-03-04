@@ -1,16 +1,9 @@
 <div class="container-fluid vh-100 background" [formGroup]="formulario">
+  <h2 class="text-center pt-3">{{ tipos | uppercase }}</h2>
   <div class="container d-flex justify-content-between py-3">
-    <div class="input-group w-50 me-3">
-      <label for="veiculo" class="form-label">Tipo de veículo</label>
-      <select class="form-select w-100 rounded" id="veiculo" formControlName="tipo" (change)="getMarcas(formulario.controls['tipo'].value)" #tipo>
-        <option selected disabled>Selecione o tipo</option>
-        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nome }}</option>
-      </select>
-    </div>
-
     <div class="input-group w-75 me-3">
       <label for="Marca" class="form-label">Marca</label>
-      <select class="form-select w-100 rounded" id="Marca" formControlName="marca" (change)="getModelos(formulario.controls['tipo'].value, formulario.controls['marca'].value)">
+      <select class="form-select w-100 rounded" id="Marca" formControlName="marca" (change)="getModelos(formulario.controls['marca'].value)">
         <option selected disabled>Selecione a Marca</option>
         <option *ngFor="let marca of marcas" [value]="marca.codigo">{{ marca.nome }}</option>
       </select>
@@ -18,7 +11,7 @@
 
     <div class="input-group me-3">
       <label for="Modelo" class="form-label">Modelo</label>
-      <select class="form-select w-100 rounded" id="Modelo" formControlName="modelo" (change)="getAnos(formulario.controls['tipo'].value, formulario.controls['marca'].value, formulario.controls['modelo'].value)">
+      <select class="form-select w-100 rounded" id="Modelo" formControlName="modelo" (change)="getAnos(formulario.controls['marca'].value, formulario.controls['modelo'].value)">
         <option selected disabled>Selecione o Modelo</option>
         <option *ngFor="let modelo of modelos" [value]="modelo.codigo">{{ modelo.nome }}</option>
       </select>
@@ -26,7 +19,7 @@
 
     <div class="input-group w-50">
       <label for="ano" class="form-label">Ano</label>
-      <select class="form-select w-100 rounded" id="ano" formControlName="ano" (change)="getValor(formulario.controls['tipo'].value, formulario.controls['marca'].value, formulario.controls['modelo'].value, formulario.controls['ano'].value)">
+      <select class="form-select w-100 rounded" id="ano" formControlName="ano" (change)="getValor(formulario.controls['marca'].value, formulario.controls['modelo'].value, formulario.controls['ano'].value)">
         <option selected disabled>Selecione o ano</option>
         <option *ngFor="let ano of anos" [value]="ano.codigo">{{ ano.nome }}</option>
       </select>
@@ -38,7 +31,7 @@
       <label for="Valor" class="form-label">Valor de venda</label>
       <div class="input-group">
         <span class="input-group-text">R$</span>
-        <input type="text" class="form-control" id="Valor" formControlName="venda" (blur)="formatAndSaveCurrency($event)" placeholder="Ex.: 30500 ou 150.975,90">
+        <input type="text" class="form-control" id="Valor" formControlName="venda" (blur)="formatAndSaveCurrency($event)" placeholder="Ex.: 30500 ou 30.500,00">
         <!-- é acionado quando o elemento perde o foco -->
       </div>
     </div>
